@@ -1,2 +1,2 @@
 # balenaMozzy
-Eclipse Mosquito server balenaCloud container
+Eclipse Mosquitto server balenaCloud container
