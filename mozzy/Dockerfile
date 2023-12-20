@@ -4,10 +4,10 @@ COPY ./mosquitto/config/ /mosquitto/config/
 
 RUN apk update && apk add gettext
 
-RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
-    -subj "/C=US/ST=California/L=Loomis/O=SamEureka/CN=sameureka.com" \
-    -keyout /mosquitto/config/server.key -out /mosquitto/config/server.crt
+# RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \
+#     -subj "/C=US/ST=California/L=Loomis/O=SamEureka/CN=sameureka.com" \
+#     -keyout /mosquitto/config/server.key -out /mosquitto/config/server.crt
 
-RUN envsubst < /mosquitto/config/pskfile.template > /mosquitto/config/pskfile
+RUN chmod +x /mosquitto/config/start.sh
 
-CMD ["/usr/sbin/mosquitto", "-d", "-c", "/mosquitto/config/mosquitto.conf"]
+CMD [ "sh", "/mosquitto/config/start.sh" ]
